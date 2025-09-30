@@ -1,12 +1,28 @@
-<h2>ユーザー詳細</h2>
+<div class="container mt-5">
+  <div class="border rounded p-4 shadow-sm bg-light w-100 w-md-75 w-lg-50 mx-auto">
+    <h2 class="text-center mb-4">ユーザー詳細</h2>
 
-<div>
-  <div><p>名前</p></div>
-  <div><%= @user.name %></div>
+    <div class="mb-3">
+      <p class="fw-bold mb-1">名前</p>
+      <p class="form-control-plaintext"><%= @user.name %></p>
+    </div>
 
-  <div><p>メールアドレス</p></div>
-  <div><%= @user.email %></div>
+    <div class="mb-3">
+      <p class="fw-bold mb-1">メールアドレス</p>
+      <p class="form-control-plaintext"><%= @user.email %></p>
+    </div>
 
-  <div><p>プロフィール画像<p></div>
-  <div><%= image_tag @user.avatar %></div>
+    <div class="mb-3">
+      <p class="fw-bold mb-1">プロフィール画像</p>
+      <% if @user.avatar.attached? %>
+        <div class="text-center">
+          <%= image_tag @user.avatar.variant(resize_to_limit: [200, 200]), class: "img-thumbnail rounded", alt: "ユーザーのプロフィール画像" %>
+        </div>
+      <% else %>
+        <p class="text-muted">画像が設定されていません</p>
+      <% end %>
+    </div>
+  </div>
 </div>
+
+<%= link_to "編集", edit_user_path(@user), class: "btn btn-primary" %>
