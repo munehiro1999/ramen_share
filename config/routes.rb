@@ -1,15 +1,15 @@
 Rails.application.routes.draw do
+  root "ramen_posts#index"
 
-  #ユーザー登録
   get "signup", to: "users#new"
   post "users", to: "users#create"
 
-  #ログイン・ログアウト
   get "login", to: "sessions#new"
   post "login", to: "sessions#create"
   delete "logout", to: "sessions#destroy"
 
   resources :users, only: [:index, :show, :edit, :update]
+  resources :ramen_posts
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
