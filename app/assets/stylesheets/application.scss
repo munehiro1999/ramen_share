@@ -3,3 +3,11 @@
  *= require_self
  */
 @import "bootstrap";
+
+body {
+  margin-top: 100px;
+}
+
+#star-rating .star{
+  cursor: pointer;
+}
