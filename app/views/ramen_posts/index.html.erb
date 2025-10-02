@@ -1,0 +1,7 @@
+<h1>RamenPosts#index</h1>
+<p>Find me in app/views/ramen_posts/index.html.erb</p>
+
+<% @ramen_posts.each do  |ramen_post| %>
+
+  <%= link_to "編集", edit_ramen_post_path(ramen_post) %>
+<% end %>
