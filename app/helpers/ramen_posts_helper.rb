@@ -1,0 +1,2 @@
+module RamenPostsHelper
+end
