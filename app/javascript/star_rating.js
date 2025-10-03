@@ -1,6 +1,10 @@
 document.addEventListener("turbo:load", function () {
-  const stars = document.querySelectorAll("#star-rating .star");
+  const starContainer = document.getElementById("star-rating");
   const input = document.getElementById("rating-input");
+
+  if (!starContainer || !input) return; 
+
+  const stars = starContainer.querySelectorAll(".star");
 
   function updateStars(rating) {
     stars.forEach((star) => {
@@ -28,7 +32,7 @@ document.addEventListener("turbo:load", function () {
     });
   });
 
-  document.getElementById("star-rating").addEventListener("mouseleave", () => {
+  starContainer.addEventListener("mouseleave", () => {
     updateStars(parseFloat(input.value));
   });
 
