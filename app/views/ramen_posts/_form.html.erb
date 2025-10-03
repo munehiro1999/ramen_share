@@ -5,7 +5,7 @@
                     class: "form-control" %>
   </div>
   <div class="mb-3">
-    <%= f.label :genre, "ラーメンタイプ", class: "form-label fw-semibold" %>
+    <%= f.label :genre, "ラーメンジャンル", class: "form-label fw-semibold" %>
     <%= f.select :genre, RamenPost.genres.keys.map { |g| [g.humanize, g] },
                     { prompt: "ジャンルを選択" },
                     class: "form-select" %>
