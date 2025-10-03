@@ -39,8 +39,11 @@
       <%= f.file_field :image, class: "form-control" %>
     </div>
   </div>
-  <div class="d-grid">
-    <%= f.submit "投稿する",
-                    class: "btn btn-lg btn-warning text-white fw-bold shadow-sm" %>
-  </div>
+  <% if @ramen_post.new_record? %>
+    <div class="d-grid">
+      <%= f.submit "投稿する",class: "btn btn-lg btn-warning text-white fw-bold shadow-sm" %>
+    <% else %>
+      <%= f.submit "編集完了する", class: "btn btn-lg btn-warning text-white fw-bold shadow-sm"%>
+    </div>
+  <% end %>
 <% end %>

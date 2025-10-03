@@ -9,6 +9,7 @@
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
     <%= javascript_include_tag "star_rating", type: "module" %>
+    <%= stylesheet_link_tag "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" %>
 
   </head>
 
@@ -16,7 +17,7 @@
     <header>
       <%= render "shared/header"%>
     </header>
-    <main class="container mx-auto mt-28 px-5 flex">
+    <main>
       <%= yield %>
     </main>
   </body>

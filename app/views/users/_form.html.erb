@@ -23,9 +23,13 @@
           <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control" %>
         </div>
       </div>
+      <% if @user.new_record? %>
       <div class="text-center">
         <%= f.submit "登録完了", class: "btn btn-outline-primary" %>
+        <% else %>
+        <%= f.submit "編集完了", class: "btn btn-outline-primary"%>
       </div>
+      <% end %>
     <% end %>
   </div>
 </div>

@@ -1,28 +1,17 @@
 <div class="container mt-5">
-  <div class="border rounded p-4 shadow-sm bg-light w-100 w-md-75 w-lg-50 mx-auto">
-    <h2 class="text-center mb-4">ユーザー詳細</h2>
-
-    <div class="mb-3">
-      <p class="fw-bold mb-1">名前</p>
-      <p class="form-control-plaintext"><%= @user.name %></p>
-    </div>
-
-    <div class="mb-3">
-      <p class="fw-bold mb-1">メールアドレス</p>
-      <p class="form-control-plaintext"><%= @user.email %></p>
-    </div>
-
-    <div class="mb-3">
-      <p class="fw-bold mb-1">プロフィール画像</p>
+  <div class="border rounded p-4 shadow-sm bg-light w-100 w-md-75 w-lg-50 mx-auto text-center">
+    <!-- プロフィール画像 -->
+    <div class="position-relative d-inline-block mb-3">
       <% if @user.avatar.attached? %>
-        <div class="text-center">
-          <%= image_tag @user.avatar.variant(resize_to_limit: [200, 200]), class: "img-thumbnail rounded", alt: "ユーザーのプロフィール画像" %>
-        </div>
+        <%= image_tag @user.avatar.variant(resize_to_limit: [150, 150]),
+              class: "rounded-circle border border-4 border-primary",
+              alt: "ユーザーのプロフィール画像" %>
       <% else %>
-        <p class="text-muted">画像が設定されていません</p>
+        <i class="fa-regular fa-circle-user show-icon"></i>
       <% end %>
     </div>
+    <h2 class="h4 fw-bold mb-1"><%= @user.name %></h2>
+    <p class="text-muted mb-3"><%= @user.email %></p>
+    <%= link_to "プロフィール編集", edit_user_path(@user), class: "btn btn-primary" %>
   </div>
 </div>
-
-<%= link_to "編集", edit_user_path(@user), class: "btn btn-primary" %>
