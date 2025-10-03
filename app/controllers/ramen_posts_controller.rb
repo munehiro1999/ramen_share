@@ -1,4 +1,6 @@
 class RamenPostsController < ApplicationController
+  before_action :correct_user, only: [:edit, :update, :destroy]
+
   def index
     @ramen_posts = RamenPost.all
   end
@@ -11,9 +13,9 @@ class RamenPostsController < ApplicationController
     @ramen_post = current_user.ramen_posts.new(ramen_post_params)
 
     if @ramen_post.save
-      redirect_to @ramen_post, notice: "投稿を作成しました"
+      redirect_to ramen_posts_path, notice: "投稿を作成しました"
     else
-      render "new"
+      render "new", status: :unprocessable_entity
     end
   end
 
@@ -30,7 +32,7 @@ class RamenPostsController < ApplicationController
     if @ramen_post.update(ramen_post_params)
       redirect_to @ramen_post, notice: "投稿を更新しました"
     else
-      render "edit"
+      render "edit", status: :unprocessable_entity
     end
   end
 
@@ -45,5 +47,10 @@ class RamenPostsController < ApplicationController
 
   def ramen_post_params
     params.require(:ramen_post).permit(:title, :genre, :description, :image, :rating )
+  end
+
+  def correct_user  #投稿者とログインのユーザーが一致してしなければリダイレクト
+    ramen_post = RamenPost.find(params[:id])
+    redirect_to ramen_posts_path, alert: "権限がありません" unless ramen_post.user == current_user
   end
 end

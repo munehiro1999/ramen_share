@@ -12,7 +12,7 @@ class UsersController < ApplicationController
 
     if @user.save
       auto_login(@user) #sorceryのログイン関数
-      redirect_to users_path, notice: "ユーザーの登録が完了しました"
+      redirect_to ramen_posts_path, notice: "ユーザーの登録が完了しました"
     else
       render "new", status: :unprocessable_entity
       #バリデーション失敗時にHTTPステータス(422)を返す
@@ -21,6 +21,7 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+    @ramen_posts = @user.ramen_posts
   end
 
   def edit

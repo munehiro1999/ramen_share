@@ -6,7 +6,7 @@ class SessionsController < ApplicationController
     @user = login(params[:email], params[:password])
 
     if @user
-      redirect_to users_path, notice: "ログインしました"
+      redirect_to ramen_posts_path, notice: "ログインしました"
     else
       flash.now[:alert] = "メールアドレスまたはパスワードが間違っています"
       render "new", status: :unprocessable_entity
@@ -15,6 +15,6 @@ class SessionsController < ApplicationController
 
   def destroy
     logout
-    redirect_to users_path, notice: "ログアウトしました"
+    redirect_to ramen_posts_path, notice: "ログアウトしました"
   end
 end
