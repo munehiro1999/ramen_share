@@ -2,6 +2,7 @@
   <div class="border rounded p-4 shadow-sm bg-light w-100 w-md-75 w-lg-50 mx-auto text-center">
     <!-- プロフィール画像 -->
     <div class="position-relative d-inline-block mb-3">
+
       <% if @user.avatar.attached? %>
         <%= image_tag @user.avatar.variant(resize_to_limit: [150, 150]),
               class: "rounded-circle border border-4 border-primary",
@@ -14,4 +15,51 @@
     <p class="text-muted mb-3"><%= @user.email %></p>
     <%= link_to "プロフィール編集", edit_user_path(@user), class: "btn btn-primary" %>
   </div>
+</div>
+
+<div class="title-text text-center mb-4 mt-4">
+  <h2 class="section-title"><%= @user.name %>さんの投稿一覧</h2>
+</div>
+<div class="main-container d-flex flex-wrap justify-content-start gap-5">
+  <% @ramen_posts.each do |ramen_post| %>
+    <div class="post-card card" >
+      <% if ramen_post.image.attached? %>
+        <%= image_tag ramen_post.image, class: "post-img" %>
+      <% else %>
+        <%= image_tag "no_image.png", class: "post-img" %>
+      <% end %>
+
+      <div class="card-body">
+        <div class="card-left mb-4 d-flex align-items-center gap-2">
+          <% if ramen_post.user.avatar.attached? %>
+            <%= image_tag ramen_post.user.avatar.variant(resize_to_limit: [150, 150]),
+                          class: "rounded-circle border border-4 border-primary",
+                          alt: "ユーザーのプロフィール画像" %>
+          <% else %>
+            <i class="fa-regular fa-circle-user show-icon fs-2"></i>
+          <% end %>
+          <div class="fs-6">
+            <%= ramen_post.user.name %>
+          </div>
+        </div>
+
+        <div class="card-right mb-3">
+          <p class="card-title fs-5 fw-bold mb-4"><%= ramen_post.title %></p>
+          <div class="d-flex justify-content-between align-items-center mt-auto">
+            <div id="star-rating" class="d-flex gap-1">
+              <% 5.times do |i| %>
+                <% value = (i + 1) * 0.5 %>
+                <% if value <= ramen_post.rating.to_f %>
+                  <span class="star fs-4 text-warning">★</span>
+                <% else %>
+                  <span class="star fs-4 text-secondary">★</span>
+                <% end %>
+              <% end %>
+            </div>
+            <%= link_to "投稿詳細へ", ramen_post_path(ramen_post), class: "detail-link text-secondary" %>
+          </div>
+        </div>
+      </div>
+    </div>
+  <% end %>
 </div>
