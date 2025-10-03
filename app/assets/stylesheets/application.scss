@@ -5,9 +5,18 @@
 @import "bootstrap";
 
 body {
-  margin-top: 100px;
+  background-color: #f8f6f6;
 }
 
 #star-rating .star{
   cursor: pointer;
 }
+
+.show-icon {
+  font-size: 60px;
+}
+
+.bg-orange-400 {
+  background-color: #f6a15a !important;
+}
+
