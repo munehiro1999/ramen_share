@@ -1,15 +1,17 @@
-<%= form_with(model: ramen_post) do |f| %>
+<%= form_with(model: @ramen_post, local: true, html: { multipart: true }) do |f| %>
   <div class="mb-3 ">
     <%= f.label :title, "ラーメンの名前or(店名)", class: "form-label fw-semibold" %>
     <%= f.text_field :title,
                     class: "form-control" %>
   </div>
+
   <div class="mb-3">
-    <%= f.label :genre, "ラーメンジャンル", class: "form-label fw-semibold" %>
+    <%= f.label :genre, "ジャンル", class: "form-label fw-semibold" %>
     <%= f.select :genre, RamenPost.genres.keys.map { |g| [g.humanize, g] },
                     { prompt: "ジャンルを選択" },
                     class: "form-select" %>
   </div>
+
   <div class="mb-3">
     <%= f.label :rating, "評価", for: "rating-input", class: "form-label fw-semibold" %>
     <div id="star-rating" class="d-flex gap-1" data-rating="<%= @ramen_post.rating || 0 %>">
@@ -20,6 +22,7 @@
     </div>
     <%= f.hidden_field :rating, id: "rating-input", value: @ramen_post.rating || 0 %>
   </div>
+
   <div class="mb-3">
     <div class="d-flex justify-content-between">
       <%= f.label :description, "概要", class: "form-label fw-semibold" %>
@@ -30,20 +33,36 @@
                     class: "form-control",
                     placeholder: "感想や特徴などコメントしてね" %>
   </div>
-  <div class="mb-4">
-    <%= f.label :image, "写真をアップロード", class: "form-label fw-semibold" %>
+
+
+<div class="mb-4">
+    <%= f.label :images, "写真をアップロード(複数可)", class: "form-label fw-semibold" %>
     <div class="border border-2 border-dashed rounded-3 p-4 text-center bg-light">
       <div class="mb-2 text-muted">
         <i class="bi bi-cloud-upload fs-1"></i>
+        <p class="mb-0 small">クリックして画像を選択(複数選択可)</p>
       </div>
-      <%= f.file_field :image, class: "form-control" %>
+      <%= f.file_field :images, multiple: true, class: "form-control", accept: "image/*", id: "image-input" %>
     </div>
+
+    <% if @ramen_post.images.attached? %>
+      <div id="image-preview" class="d-flex flex-wrap gap-3 mt-3">
+        <% @ramen_post.images.each do |image| %>
+          <div class="position-relative">
+            <%= image_tag url_for(image),
+                          class: "rounded-3",
+                          style: "object-fit: cover; max-height: 150px;" %>
+            <%= link_to "削除", delete_image_ramen_post_path(@ramen_post, image.id),
+                        method: :delete,
+                        data: { confirm: "この画像を削除しますか？" },
+                        class: "btn btn-sm btn-danger position-absolute top-0 end-0 m-1" %>
+          </div>
+        <% end %>
+      </div>
+    <% end %>
   </div>
-  <% if @ramen_post.new_record? %>
-    <div class="d-grid">
-      <%= f.submit "投稿する",class: "btn btn-lg btn-warning text-white fw-bold shadow-sm" %>
-    <% else %>
-      <%= f.submit "編集完了する", class: "btn btn-lg btn-warning text-white fw-bold shadow-sm"%>
-    </div>
-  <% end %>
+  <div class="d-grid">
+    <%= f.submit @ramen_post.new_record? ? "投稿する" : "編集完了する",
+                class: "btn btn-lg btn-warning text-white fw-bold shadow-sm" %>
+  </div>
 <% end %>
