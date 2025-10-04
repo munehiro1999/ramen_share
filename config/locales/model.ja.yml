@@ -1,0 +1,16 @@
+ja:
+  activerecord:
+    models:
+      user: "ユーザー"
+      ramen_post: "ラーメン投稿"
+    attributes:
+      user:
+        name: "名前"
+        email: "メールアドレス"
+        crypted_password: "パスワード（暗号化）"
+      ramen_post:
+        title: "タイトル"
+        genre: "ジャンル"
+        description: "概要"
+        user_id: "ユーザー"
+        rating: "評価"
