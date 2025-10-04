@@ -10,6 +10,13 @@ Rails.application.routes.draw do
 
   resources :users, only: [:index, :show, :edit, :update]
   resources :ramen_posts
+
+  resources :ramen_posts do
+    # 個別画像削除用ルート編集画面にて
+    member do
+      delete 'delete_image/:image_id', to: 'ramen_posts#delete_image', as: 'delete_image'
+    end
+  end
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
