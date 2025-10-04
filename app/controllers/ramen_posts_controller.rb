@@ -42,11 +42,18 @@ class RamenPostsController < ApplicationController
     redirect_to ramen_posts_path, notice: "投稿を削除しました"
   end
 
+  def delete_image
+    @ramen_post = current_user.ramen_posts.find(params[:id])
+    image = @ramen_post.images.find(params[:image_id])
+    image.purge
+    redirect_back fallback_location: edit_ramen_post_path(@ramen_post), notice: "画像を削除しました"
+  end
+
 
   private
 
   def ramen_post_params
-    params.require(:ramen_post).permit(:title, :genre, :description, :image, :rating )
+    params.require(:ramen_post).permit(:title, :genre, :description, :rating, images: [])
   end
 
   def correct_user  #投稿者とログインのユーザーが一致してしなければリダイレクト

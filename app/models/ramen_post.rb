@@ -1,6 +1,6 @@
 class RamenPost < ApplicationRecord
   belongs_to :user
-  has_one_attached :image, dependent: :destroy
+  has_many_attached :images, dependent: :destroy
   enum genre: { "ラーメン": 0, "つけ麺": 1, "油そば": 2 }
 
   validates :title, presence: true
