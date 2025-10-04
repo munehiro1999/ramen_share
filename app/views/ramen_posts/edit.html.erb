@@ -3,9 +3,11 @@
     <%= image_tag "title_logo.jpeg", class: "img-fluid w-100 h-100", style: "object-fit: cover; filter: brightness(60%);", alt: "タイトル画像" %>
     <div class="position-absolute top-50 start-50 translate-middle text-white text-center" >
       <h1 class="display-4 fw-bold ">投稿編集</h1>
+      <%= link_to "投稿詳細へ",  ramen_post_path(@ramen_post), class: " btn  btn-primary text-white shadow-sm mb-3"%>
     </div>
   </div>
 </div>
+<%= render "shared/error_messages", obj: @ramen_post %>
 
 <div class="container mt-5">
   <div class="row justify-content-center">

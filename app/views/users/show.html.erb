@@ -1,6 +1,5 @@
 <div class="container mt-5">
   <div class="border rounded p-4 shadow-sm bg-light w-100 w-md-75 w-lg-50 mx-auto text-center">
-    <!-- プロフィール画像 -->
     <div class="position-relative d-inline-block mb-3">
 
       <% if @user.avatar.attached? %>
@@ -20,7 +19,7 @@
 <div class="title-text text-center mb-4 mt-4">
   <h2 class="section-title"><%= @user.name %>さんの投稿一覧</h2>
 </div>
-<div class="main-container d-flex flex-wrap justify-content-start gap-5">
+<div class="main-container">
   <% @ramen_posts.each do |ramen_post| %>
     <div class="post-card card" >
       <% if ramen_post.image.attached? %>
@@ -40,6 +39,7 @@
           <% end %>
           <div class="fs-6">
             <%= ramen_post.user.name %>
+            <small class="text-muted"><%= ramen_post.created_at.strftime("%m/%d %H:%M") %></small>
           </div>
         </div>
 

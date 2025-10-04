@@ -1,8 +1,8 @@
 <h2>ユーザー編集</h2>
-
+<%= render "shared/error_messages", obj: @user %>
 <div class="container mt-5">
   <div class="border rounded p-4 shadow-sm bg-light w-75 w-md-50 w-xl-40 mx-auto">
-    <%= form_with model: @user, url: users_path, local: true, multipart: true do |f| %>
+    <%= form_with model: @user, local: true, multipart: true do |f| %>
       <div>
         <div class="mb-3">
           <%= f.label :name, "名前" %>

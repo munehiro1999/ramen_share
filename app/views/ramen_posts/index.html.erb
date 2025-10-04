@@ -12,7 +12,7 @@
 <div class="title-text text-center mb-4 mt-4">
   <h2 class="section-title">投稿一覧</h2>
 </div>
-<div class="main-container d-flex flex-wrap justify-content-start gap-5">
+<div class="main-container">
   <% @ramen_posts.each do |ramen_post| %>
     <div class="post-card card" >
       <% if ramen_post.image.attached? %>
@@ -32,11 +32,13 @@
           <% end %>
           <div class="fs-6">
             <%= ramen_post.user.name %>
+            <small class="text-muted"><%= ramen_post.created_at.strftime("%m/%d %H:%M") %></small>
           </div>
         </div>
 
         <div class="card-right mb-3">
           <p class="card-title fs-5 fw-bold mb-4"><%= ramen_post.title %></p>
+
           <div class="d-flex justify-content-between align-items-center mt-auto">
             <div id="star-rating" class="d-flex gap-1">
               <% 5.times do |i| %>

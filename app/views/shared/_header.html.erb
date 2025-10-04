@@ -18,7 +18,7 @@
           </a>
           <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userMenu">
             <li><%= link_to "ユーザー詳細", user_path(current_user), class: "dropdown-item" %></li>
-            <li><%= link_to "ログアウト", logout_path, method: :delete, class: "dropdown-item"%></li>
+            <li><%= link_to "ログアウト", logout_path, method: :delete, data: { confirm: "ログアウトしますか？" }, class: "dropdown-item"%></li>
           </ul>
         </div>
       <% else %>
