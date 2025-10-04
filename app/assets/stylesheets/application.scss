@@ -21,8 +21,10 @@ body {
 }
 
 .main-container {
-  width: 100%;
-  max-width: 1300px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 3rem;
+  max-width: 1350px;
   margin: 0 auto;
 }
 
@@ -43,11 +45,13 @@ body {
   height: 250px;
   object-fit: cover;
 }
+
 .post-card {
-  width: 320px;
+  width: 300px;
   display: flex;
   flex-direction: column;
 }
+
 .card-body {
   display: flex;
   flex-direction: column;
@@ -59,4 +63,10 @@ body {
   display: inline-block;
   padding-bottom: 0.5rem;
   border-bottom: 5px solid #333; // 下線の色と太さ
+}
+
+@media (max-width: 400px) {
+  .main-container {
+    justify-content: center;
+  }
 }
