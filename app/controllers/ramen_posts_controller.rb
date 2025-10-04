@@ -2,7 +2,7 @@ class RamenPostsController < ApplicationController
   before_action :correct_user, only: [:edit, :update, :destroy]
 
   def index
-    @ramen_posts = RamenPost.all
+    @ramen_posts = RamenPost.all.order(created_at: :desc)
   end
 
   def new

@@ -21,7 +21,7 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    @ramen_posts = @user.ramen_posts
+    @ramen_posts = @user.ramen_posts.order(created_at: :desc)
   end
 
   def edit
