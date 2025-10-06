@@ -1,8 +1,5 @@
 ja:
   activerecord:
-    models:
-      user: "ユーザー"
-      ramen_post: "ラーメン投稿"
     attributes:
       user:
         name: "名前"
@@ -14,3 +11,7 @@ ja:
         description: "概要"
         user_id: "ユーザー"
         rating: "評価"
+        genres:
+          ramen: "ラーメン"
+          tukemen: "つけ麺"
+          aburasoba: "油そば"
