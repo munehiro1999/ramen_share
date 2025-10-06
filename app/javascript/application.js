@@ -7,6 +7,9 @@ Rails.start()
 import "@popperjs/core"
 import "bootstrap"
 
+import "./map_display";
+
+
 document.addEventListener("turbo:load", function () {
   const input = document.getElementById("image-input");
   const preview = document.getElementById("image-preview");
@@ -57,3 +60,5 @@ document.addEventListener("turbo:load", function () {
     input.files = data.files;
   });
 });
+
+
