@@ -53,7 +53,7 @@ class RamenPostsController < ApplicationController
   private
 
   def ramen_post_params
-    params.require(:ramen_post).permit(:title, :genre, :description, :rating, images: [])
+    params.require(:ramen_post).permit(:title, :genre, :description, :rating, :address, :latitude, :longitude, images: [])
   end
 
   def correct_user  #投稿者とログインのユーザーが一致してしなければリダイレクト
