@@ -8,6 +8,8 @@ Rails.application.routes.draw do
   post "login", to: "sessions#create"
   delete "logout", to: "sessions#destroy"
 
+  post "guest_login", to: "sessions#guest_login"
+
   resources :users, only: [:index, :show, :edit, :update]
   resources :ramen_posts
 
