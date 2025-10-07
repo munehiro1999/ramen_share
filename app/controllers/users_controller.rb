@@ -1,4 +1,6 @@
 class UsersController < ApplicationController
+  before_action :set_user, only: [:edit, :update]
+  before_action :check_guest_user, only: [:edit, :update, :destroy]
   def index
     @users = User.all
   end
@@ -25,11 +27,9 @@ class UsersController < ApplicationController
   end
 
   def edit
-    @user = User.find(params[:id])
   end
 
   def update
-    @user = User.find(params[:id])
     if @user.update(user_params)
       redirect_to users_path, notice: "ユーザーの情報を更新しました"
     else
@@ -42,7 +42,17 @@ class UsersController < ApplicationController
 
   private
 
+  def set_user
+    @user = User.find(params[:id])
+  end
+
   def user_params
     params.require(:user).permit(:name, :email, :avatar, :password, :password_confirmation)
+  end
+
+  def check_guest_user
+    if @user.email == "guest@example.com"
+      redirect_to @user, notice: "ゲストユーザーはプロフィールを編集できません"
+    end
   end
 end
