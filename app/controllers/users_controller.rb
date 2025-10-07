@@ -51,7 +51,7 @@ class UsersController < ApplicationController
   end
 
   def check_guest_user
-    if @user.email == "guest@example.com"
+    if @user.guest?
       redirect_to @user, notice: "ゲストユーザーはプロフィールを編集できません"
     end
   end
