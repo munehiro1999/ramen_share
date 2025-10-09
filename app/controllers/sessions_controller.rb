@@ -27,7 +27,6 @@ class SessionsController < ApplicationController
     end
 
     session[:user_id] = guest.id
-
     redirect_to ramen_posts_path, notice: "ゲストログインしました"
   rescue ActiveRecord::RecordInvalid => e
     redirect_to root_path, notice: "ゲストログインに失敗しました: #{e.message}"

@@ -2,7 +2,16 @@ class RamenPostsController < ApplicationController
   before_action :correct_user, only: [:edit, :update, :destroy]
 
   def index
-    @ramen_posts = RamenPost.all.order(created_at: :desc)
+    if params[:type] == "popular"
+      @ramen_posts = RamenPost.popular
+    else
+      @ramen_posts = RamenPost.all.order(created_at: :desc )
+    end
+
+    respond_to do |format|
+      format.html
+      format.turbo_stream
+    end
   end
 
   def new
