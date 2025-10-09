@@ -85,3 +85,28 @@ body {
   box-shadow: 0 2px 4px rgba(0,0,0,0.2);
 }
 
+.tab-link {
+  display: inline-block;
+  padding: 1rem 2rem;
+  font-size: 1.25rem;
+  font-weight: 600;
+  border-radius: 1rem;
+  text-decoration: none;
+  color: #555;
+  background-color: #f0f0f0;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  margin-right: 10px;
+}
+
+.tab-link:hover {
+  background-color: #f6a15a;
+  color: #fff;
+  transform: translateY(-2px);
+}
+
+.tab-active {
+  background-color: #f6a15a;
+  color: #fff;
+  box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+}
