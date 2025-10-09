@@ -1,6 +1,6 @@
 <div class="d-flex justify-content-center align-items-center mt-3">
   <div class="border rounded p-4 shadow-sm bg-light w-75 w-md-50 w-xl-40">
-    <%= form_with url: login_path, method: :post do |f| %>
+    <%= form_with url: login_path, method: :post, data: { turbo: false } do |f| %>
       <div class="mb-3">
         <%= label_tag :email, "メールアドレス" %>
         <%= email_field_tag :email, nil, class: "form-control" %>
