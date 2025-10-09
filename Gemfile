@@ -73,4 +73,4 @@ gem 'jquery-rails'
 gem "sassc-rails"
 gem "rails-i18n"
 gem "geocoder"
-
+gem "high_voltage"
