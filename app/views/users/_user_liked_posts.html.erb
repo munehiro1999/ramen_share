@@ -1,0 +1,8 @@
+<div class="main-container">
+  <% posts.each do |post| %>
+    <%= render "ramen_posts/ramen_post_card", ramen_post: post %>
+  <% end %>
+  <% if posts.empty? %>
+    <p class="text-center mt-3">いいねした投稿はありません</p>
+  <% end %>
+</div>

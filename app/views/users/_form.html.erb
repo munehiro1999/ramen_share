@@ -1,6 +1,6 @@
 <div class="container mt-3">
   <div class="border rounded p-4 shadow-sm bg-light w-75 w-md-50 w-xl-40 mx-auto">
-  <%= form_with(model: user) do |f| %>
+  <%= form_with(model: user), data: { turbo: false } do |f| %>
       <div>
         <div class="mb-3">
           <%= f.label :name, "名前" %>
