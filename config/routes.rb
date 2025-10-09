@@ -26,6 +26,11 @@ Rails.application.routes.draw do
       delete 'delete_image/:image_id', to: 'ramen_posts#delete_image', as: 'delete_image'
     end
   end
+
+  #footerの中身
+  get '/terms', to: 'high_voltage/pages#show', id: 'terms'
+  get '/privacy', to: 'high_voltage/pages#show', id: 'privacy'
+
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
