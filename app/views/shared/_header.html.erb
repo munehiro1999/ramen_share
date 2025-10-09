@@ -21,13 +21,13 @@
           <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userMenu">
             <li><%= link_to "ユーザー詳細", user_path(current_user), class: "dropdown-item fw-bold" %></li>
             <li><%= link_to "投稿", new_ramen_post_path, class: "dropdown-item fw-bold" %></li>
-            <li><%= link_to "ログアウト", logout_path, method: :delete, data: { confirm: "ログアウトしますか？" }, class: "dropdown-item fw-bold "%></li>
+            <li><%= button_to "ログアウト", logout_path, method: :delete, data: { turbo: false, confirm: "ログアウトしますか？" }, class: "dropdown-item fw-bold "%></li>
           </ul>
         </div>
       <% else %>
-        <%= button_to "ゲストログイン", guest_login_path, method: :post, class: "btn btn-outline-secondary me-2"%>
-        <%= link_to "ログイン", login_path, class: "btn btn-outline-secondary me-2"%>
-        <%= link_to "新規登録", signup_path, class: "btn btn-outline-secondary me-4" %>
+        <%= button_to "ゲストログイン", guest_login_path, method: :post, data: { turbo: false }, class: "btn btn-outline-secondary me-2"%>
+        <%= link_to "ログイン", login_path, data: { turbo: false },class: "btn btn-outline-secondary me-2"%>
+        <%= link_to "新規登録", signup_path, data: { turbo: false },class: "btn btn-outline-secondary me-4" %>
       <% end %>
     </div>
   </div>
