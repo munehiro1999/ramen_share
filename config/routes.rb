@@ -10,10 +10,17 @@ Rails.application.routes.draw do
 
   post "guest_login", to: "sessions#guest_login"
 
-  resources :users, only: [:index, :show, :edit, :update]
+  resources :users, only: [:index, :show, :edit, :update] do
+    member do
+      get :my_posts # 自分の投稿
+      get :liked_posts # いいねした投稿
+    end
+  end
   resources :ramen_posts
 
   resources :ramen_posts do
+    # いいね機能をネスト
+    resource :like, only: [:create, :destroy]
     # 個別画像削除用ルート編集画面にて
     member do
       delete 'delete_image/:image_id', to: 'ramen_posts#delete_image', as: 'delete_image'
