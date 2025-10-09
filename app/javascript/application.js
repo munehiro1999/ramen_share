@@ -10,6 +10,7 @@ import "bootstrap"
 import "./map_display";
 
 
+
 document.addEventListener("turbo:load", function () {
   const input = document.getElementById("image-input");
   const preview = document.getElementById("image-preview");
