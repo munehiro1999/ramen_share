@@ -69,15 +69,13 @@
       class="rounded shadow-sm mt-4">
             </div>
           </div>
-          <!-- 編集・削除 -->
           <div>
             <% if @ramen_post.user == current_user %>
               <%= link_to "編集する", edit_ramen_post_path(@ramen_post),
                           class: "btn btn-lg btn-warning text-white fw-bold shadow-sm mb-3" %>
-              <%= link_to "削除する", ramen_post_path(@ramen_post),
-                          method: :delete,
-                          data: { confirm: "本当に削除しますか?" },
-                          class: "btn btn-lg btn-danger text-white fw-bold shadow-sm mb-3" %>
+              <%= form_with url: ramen_post_path(@ramen_post), method: :delete, data: { turbo: false }, html: { onsubmit: "return confirm('本当に削除しますか？');" } do %>
+                <%= submit_tag "削除する", class: "btn btn-lg btn-danger text-white fw-bold shadow-sm mb-3" %>
+              <% end %>
             <% end %>
           </div>
         </div>

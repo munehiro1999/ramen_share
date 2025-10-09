@@ -8,61 +8,18 @@
     </div>
   </div>
 </div>
-<div class="title-text text-center mb-4 mt-4">
-  <h2 class="section-title">投稿一覧</h2>
+<div class="container mt-4">
+  <div class="d-flex justify-content-center mb-4">
+    <%= link_to "新着投稿", ramen_posts_path,
+          data: { turbo_frame: "posts-list", turbo_action: "replace" }, class: "tab-link tab-active"%>
+    <%= link_to "人気投稿", ramen_posts_path(type: "popular"),
+          data: { turbo_frame: "posts-list", turbo_action: "replace" }, class: "tab-link tab-active"%>
+  </div>
 </div>
-<div class="main-container">
-  <% @ramen_posts.each do |ramen_post| %>
-    <div class="post-card card">
-      <div class="post-images">
-        <% if ramen_post.images.attached? %>
-          <!-- 最初の1枚だけ表示している -->
-          <%= image_tag ramen_post.images.first,
-                        class: "img-fluid rounded mb-3",
-                        style: "max-height: 300px; object-fit: cover;" %>
-        <% else %>
-          <%= image_tag "no_image.png",
-                        class: "img-fluid rounded mb-3",
-                        style: "max-height: 300px; object-fit: cover;" %>
-        <% end %>
-      </div>
-      <div class="card-body">
-        <div class="card-left mb-4 d-flex align-items-center gap-2">
-          <% if ramen_post.user.avatar.attached? %>
-            <%= image_tag ramen_post.user.avatar,
-                          class: "rounded-circle border-4",
-                          style: "width: 35px; height: 35px;",
-                          alt: "ユーザーのプロフィール画像" %>
-          <% else %>
-            <i class="fa-regular fa-circle-user show-icon fs-2"></i>
-          <% end %>
-          <div class="fs-6">
-            <%= ramen_post.user.name %>
-            <small class="text-muted"><%= ramen_post.created_at.strftime("%m/%d %H:%M") %></small>
-          </div>
-        </div>
-        <div class="card-right mb-3">
-          <p class="card-title fs-5 fw-bold mb-4"><%= ramen_post.title %></p>
-          <div class="mb-3">
-            <label class="fw-semibold">ジャンル</label>
-            <p class="form-control-plaintext">
-              <%= I18n.t("activerecord.attributes.ramen_post.genres.#{ramen_post.genre}") %>
-          </div>
-          <div class="d-flex justify-content-between align-items-center mt-auto">
-            <div id="star-rating" class="d-flex gap-1">
-              <% 5.times do |i| %>
-                <% value = (i + 1) * 0.5 %>
-                <% if value <= ramen_post.rating.to_f %>
-                  <span class="star fs-4 text-warning">★</span>
-                <% else %>
-                  <span class="star fs-4 text-secondary">★</span>
-                <% end %>
-              <% end %>
-            </div>
-            <%= link_to "投稿詳細へ", ramen_post_path(ramen_post), class: "detail-link text-secondary" %>
-          </div>
-        </div>
-      </div>
-    </div>
-  <% end %>
-</div>
+<%= turbo_frame_tag "posts-list" do%>
+  <div class="main-container">
+    <% @ramen_posts.each do |ramen_post| %>
+      <%= render "ramen_post_card", ramen_post: ramen_post %>
+    <% end %>
+  </div>
+<% end %>
