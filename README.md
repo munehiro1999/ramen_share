@@ -15,3 +15,4 @@
 ## 7.主な使用技術
 
 ## 8.ER図
+<img width="1536" height="1024" alt="リレーショナルデータベーススキーマのER図" src="https://github.com/user-attachments/assets/f114092e-ee97-4399-b056-429ea1e32c39" />
