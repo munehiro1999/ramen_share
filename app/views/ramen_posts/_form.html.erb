@@ -39,21 +39,21 @@
       </div>
       <%= f.file_field :images, multiple: true, class: "form-control", accept: "image/*", id: "image-input" %>
     </div>
-    <% if @ramen_post.images.attached? %>
-      <div id="image-preview" class="d-flex flex-wrap gap-3 mt-3">
+    <!-- プレビュー領域 -->
+    <div id="image-preview" class="d-flex flex-wrap gap-3 mt-3">
+      <% if @ramen_post.images.attached? %>
         <% @ramen_post.images.each do |image| %>
-          <div class="position-relative">
+          <div class="position-relative existing-image-wrapper">
             <%= image_tag url_for(image),
-                          class: "rounded-3",
-                          style: "object-fit: cover; max-height: 150px;" %>
-            <%= link_to "削除", delete_image_ramen_post_path(@ramen_post, image.id),
-                        method: :delete,
-                        data: { confirm: "この画像を削除しますか？" },
-                        class: "btn btn-sm btn-danger position-absolute top-0 end-0 m-1" %>
+                        class: "rounded-3",
+                        style: " width: 200px; height: 200px;object-fit: cover;" %>
+            <button type="button"
+                  class="btn btn-sm btn-danger position-absolute top-0 end-0 m-1 rounded-circle existing-delete-btn"
+                  data-image-id="<%= image.id %>">&times;</button>
           </div>
         <% end %>
-      </div>
-    <% end %>
+      <% end %>
+    </div>
   </div>
   <div class="mb-3">
     <%= f.label :address, "店舗住所(場所と名前を入れると正確に表示されます)", class: "form-label fw-semibold" %>
