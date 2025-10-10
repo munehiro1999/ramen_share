@@ -6,19 +6,20 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
-    <%= javascript_importmap_tags %>
     <%= stylesheet_link_tag "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" %>
+    <%= javascript_importmap_tags %>
     <script async defer
-  src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['GOOGLE_MAP_API_KEY'] %>&callback=initMap"></script>
+    src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['GOOGLE_MAP_API_KEY'] %>&callback=initMap">
+    </script>
   </head>
   <body>
     <header>
       <%= render "shared/header"%>
     </header>
     <main>
-    <%= render "shared/flash_messages", obj: @user %>
+      <%= render "shared/flash_messages", obj: @user %>
       <%= yield %>
-    <%= render "shared/footer"%>
+      <%= render "shared/footer"%>
     </main>
   </body>
 </html>
