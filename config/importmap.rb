@@ -12,4 +12,5 @@ pin "map_display"
 pin "map_detail"
 
 pin "@rails/ujs", to: "https://ga.jspm.io/npm:@rails/ujs@7.0.6/lib/assets/compiled/rails-ujs.js"
-pin "star_rating", to: "star_rating.js"
+pin "star_rating", to: "star_rating.js", preload: true
+pin "map_display", to: "map_display.js", preload: true
