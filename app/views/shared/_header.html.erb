@@ -1,0 +1,34 @@
+<header class="bg-white border-bottom shadow-sm fixed-top">
+  <div class="header-container d-flex justify-content-between">
+    <div class="header-left d-flex align-items-center gap-4">
+      <%= link_to "RamenShare", ramen_posts_path, class: "bg-header d-flex align-items-center fs-3  nav-link text-darkm ms-4"%>
+
+      <%= link_to ramen_posts_path do %>
+        <i class="fa-solid fa-house text-dark ms-2"></i>
+      <% end %>
+      <%= link_to "投稿", new_ramen_post_path, class: "nav-link text-dark fw-bold "%>
+    </div>
+    <div class="header-right d-flex align-items-center">
+      <% if logged_in? %>
+        <div class="dropdown me-4">
+          <a class="btn btn-light dropdowm-toggle d-flex align-items-center" href="#" role="button" id="userMenu"  data-bs-toggle="dropdown" aria-expanded="false">
+            <% if current_user.avatar.attached? %>
+              <%= image_tag current_user.avatar, class:"rounded-circle", size: "40x40"%>
+            <% else %>
+              <i class="fa-solid fa-circle-user fa-2x"></i>
+            <% end %>
+          </a>
+          <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userMenu">
+            <li><%= link_to "ユーザー詳細", user_path(current_user), class: "dropdown-item fw-bold" %></li>
+            <li><%= link_to "投稿", new_ramen_post_path, class: "dropdown-item fw-bold" %></li>
+            <li><%= button_to "ログアウト", logout_path, method: :delete, data: { turbo: false, confirm: "ログアウトしますか？" }, class: "dropdown-item fw-bold "%></li>
+          </ul>
+        </div>
+      <% else %>
+        <%= button_to "ゲストログイン", guest_login_path, method: :post, data: { turbo: false }, class: "btn btn-outline-secondary me-2"%>
+        <%= link_to "ログイン", login_path, data: { turbo: false },class: "btn btn-outline-secondary me-2"%>
+        <%= link_to "新規登録", signup_path, data: { turbo: false },class: "btn btn-outline-secondary me-4" %>
+      <% end %>
+    </div>
+  </div>
+</header>

@@ -1,0 +1,17 @@
+ja:
+  activerecord:
+    attributes:
+      user:
+        name: "名前"
+        email: "メールアドレス"
+        crypted_password: "パスワード（暗号化）"
+      ramen_post:
+        title: "タイトル"
+        genre: "ジャンル"
+        description: "概要"
+        user_id: "ユーザー"
+        rating: "評価"
+        genres:
+          ramen: "ラーメン"
+          tukemen: "つけ麺"
+          aburasoba: "油そば"

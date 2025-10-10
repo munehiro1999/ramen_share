@@ -1,0 +1,17 @@
+<%= turbo_frame_tag "like_#{ramen_post.id}" do %>
+  <% if ramen_post.likes.exists?(user: current_user) %>
+    <%= button_to ramen_post_like_path(ramen_post),
+                  method: :delete,
+                  data: { turbo_method: :delete },
+                  class: "btn btn-light border-0 p-0" do %>
+      <i class="fa-solid fa-heart text-danger fs-5"></i>
+    <% end %>
+  <% else %>
+    <%= button_to ramen_post_like_path(ramen_post),
+                  method: :post,
+                  class: "btn btn-light border-0 p-0" do %>
+      <i class="fa-regular fa-heart text-secondary fs-5"></i>
+    <% end %>
+  <% end %>
+  <span class="ms-1 text-muted"><%= ramen_post.likes.count %></span>
+<% end %>

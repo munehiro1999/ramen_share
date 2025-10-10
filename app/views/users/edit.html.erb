@@ -1,0 +1,34 @@
+<h2>ユーザー編集</h2>
+<%= render "shared/error_messages", obj: @user %>
+<div class="container mt-5">
+  <div class="border rounded p-4 shadow-sm bg-light w-75 w-md-50 w-xl-40 mx-auto">
+    <%= form_with model: @user, local: true, multipart: true, data: { turbo: false } do |f| %>
+      <div>
+        <div class="mb-3">
+          <%= f.label :name, "名前" %>
+          <%= f.text_field :name, autocomplete: "name", class: "form-control" %>
+        </div>
+        <div class="mb-3">
+          <%= f.label :email, "メールアドレス" %>
+          <%= f.email_field :email, autocomplete: "email", class: "form-control" %>
+        </div>
+        <div class="mb-3">
+          <%= f.label :avatar, "アバター画像" %>
+          <%= f.file_field :avatar, class: "form-control" %>
+        </div>
+        <div class="mb-3">
+          <%= f.label :password, "パスワード" %>
+          <%= f.password_field :password, autocomplete: "new-password", class: "form-control" %>
+        </div>
+        <div class="mb-3">
+          <%= f.label :password_confirmation, "パスワード(確認)" %>
+          <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control" %>
+        </div>
+      </div>
+      <div class="text-center">
+        <%= f.submit "編集完了", class: "btn btn-outline-primary" %>
+      </div>
+    <% end %>
+  </div>
+</div>
+

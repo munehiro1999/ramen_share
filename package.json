@@ -1,0 +1,9 @@
+{
+  "scripts": {
+    "build:css": "...",
+    "watch:css": "..."
+  },
+  "dependencies": {
+    "@rails/ujs": "^7.1.3-4"
+  }
+}

@@ -1,0 +1,7 @@
+<%= turbo_stream.replace "posts-list" do %>
+  <div class="main-container">
+    <% @ramen_posts.each do |ramen_post| %>
+      <%= render "ramen_post_card", ramen_post: ramen_post %>
+    <% end %>
+  </div>
+<% end %>

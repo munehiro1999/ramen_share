@@ -1,0 +1,70 @@
+<%= form_with(model: @ramen_post, local: true, html: { multipart: true }, data: { turbo: false }) do |f| %>
+  <div class="mb-3 ">
+    <%= f.label :title, "ラーメンの名前or(店名)", class: "form-label fw-semibold" %>
+    <%= f.text_field :title,
+                    class: "form-control" %>
+  </div>
+  <div class="mb-3">
+    <%= f.label :genre, "ジャンル", class: "form-label fw-semibold" %>
+    <%= f.select :genre, RamenPost.genres.keys.map { |g| [I18n.t("activerecord.attributes.ramen_post.genres.#{g}"), g] },
+                  { prompt: "ジャンルを選択" },
+                  class: "form-select" %>
+  </div>
+  <div class="mb-3">
+    <%= f.label :rating, "評価", for: "rating-input", class: "form-label fw-semibold" %>
+    <div id="star-rating" class="d-flex gap-1" data-rating="<%= @ramen_post.rating || 0 %>">
+      <% 5.times do |i| %>
+        <% value = (i + 1) * 0.5 %>
+        <span class="star fs-3 text-secondary" data-value="<%= value %>">★</span>
+      <% end %>
+    </div>
+    <%= f.hidden_field :rating, id: "rating-input", value: @ramen_post.rating || 0 %>
+  </div>
+  <div class="mb-3">
+    <div class="d-flex justify-content-between">
+      <%= f.label :description, "概要", class: "form-label fw-semibold" %>
+    </div>
+    <%= f.text_area :description,
+                    rows: 4,
+                    maxlength: 400,
+                    class: "form-control",
+                    placeholder: "感想や特徴などコメントしてね" %>
+  </div>
+  <div class="mb-4">
+    <%= f.label :images, "写真をアップロード(複数可)", class: "form-label fw-semibold" %>
+    <div class="border border-2 border-dashed rounded-3 p-4 text-center bg-light">
+      <div class="mb-2 text-muted">
+        <i class="bi bi-cloud-upload fs-1"></i>
+        <p class="mb-0 small">クリックして画像を選択(複数選択可)</p>
+      </div>
+      <%= f.file_field :images, multiple: true, class: "form-control", accept: "image/*", id: "image-input" %>
+    </div>
+    <!-- プレビュー領域 -->
+    <div id="image-preview" class="d-flex flex-wrap gap-3 mt-3">
+      <% if @ramen_post.images.attached? %>
+        <% @ramen_post.images.each do |image| %>
+          <div class="position-relative existing-image-wrapper">
+            <%= image_tag url_for(image),
+                        class: "rounded-3",
+                        style: " width: 200px; height: 200px;object-fit: cover;" %>
+            <button type="button"
+                  class="btn btn-sm btn-danger position-absolute top-0 end-0 m-1 rounded-circle existing-delete-btn"
+                  data-image-id="<%= image.id %>">&times;</button>
+          </div>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+  <div class="mb-3">
+    <%= f.label :address, "店舗住所(場所と名前を入れると正確に表示されます)", class: "form-label fw-semibold" %>
+    <%= f.text_field :address, id: "ramen_post_address", class: "form-control",
+                    placeholder: "例:東京都渋谷区○○1-2-3" %>
+  </div>
+  <%= f.hidden_field :latitude, id: "ramen_post_latitude" %>
+  <%= f.hidden_field :longitude, id: "ramen_post_longitude" %>
+  <div id="map-preview" style="width: 100%; height: 300px;" class="rounded shadow-sm mb-4 border"></div>
+  <div class="d-grid">
+    <%= f.submit @ramen_post.new_record? ? "投稿する" : "編集完了する",
+                class: "btn btn-lg btn-warning text-white fw-bold shadow-sm" %>
+  </div>
+<% end %>

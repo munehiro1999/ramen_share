@@ -1,0 +1,26 @@
+<div class="container-fluid p-0">
+  <div class="position-relative w-100" style="height: 600px; min-height: 400px; max-height: 500px;">
+    <%= image_tag "ramen_top.png", class: "img-fluid w-100 h-100", style: "object-fit: cover; filter: brightness(60%);", alt: "トップ画像" %>
+    <div class="position-absolute top-50 start-50 translate-middle text-white text-center" >
+      <h1 class="display-4 fw-bold bg-orange-400">RamenShare</h1>
+      <p class="lead">RamenShareは、全国のラーメン店・自作のラーメンの情報を<br>
+        写真/評価/感想/場所と共に投稿して共有できるサービスです!<br>
+        今すぐにおすすめのラーメンを共有しよう！</p>
+    </div>
+  </div>
+</div>
+<div class="container mt-4">
+  <div class="d-flex justify-content-center mb-4">
+    <%= link_to "新着投稿", ramen_posts_path,
+          data: { turbo_frame: "posts-list", turbo_action: "replace" }, class: "tab-link tab-active"%>
+    <%= link_to "人気投稿", ramen_posts_path(type: "popular"),
+          data: { turbo_frame: "posts-list", turbo_action: "replace" }, class: "tab-link tab-active"%>
+  </div>
+</div>
+<%= turbo_frame_tag "posts-list" do%>
+  <div class="main-container">
+    <% @ramen_posts.each do |ramen_post| %>
+      <%= render "ramen_post_card", ramen_post: ramen_post %>
+    <% end %>
+  </div>
+<% end %>
