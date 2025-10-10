@@ -14,36 +14,67 @@ import "./map_display";
 document.addEventListener("turbo:load", function () {
   const input = document.getElementById("image-input");
   const preview = document.getElementById("image-preview");
-  let selectedFiles = [];
+  // 編集時も残すため、selectedFiles はページロード後に空にせず維持
+  window.selectedFiles = window.selectedFiles || [];
 
-  if (!input) return;
+  if (!input || !preview) return;
 
+  // 既存画像削除ボタン
+  preview.querySelectorAll(".existing-delete-btn").forEach(btn => {
+    btn.addEventListener("click", (e) => {
+      e.preventDefault();
+      const wrapper = btn.closest(".existing-image-wrapper");
+      const imageId = btn.dataset.imageId;
+
+      // Rails 側で削除処理用 hidden input を作成
+      const hiddenInput = document.createElement("input");
+      hiddenInput.type = "hidden";
+      hiddenInput.name = "deleted_image_ids[]";
+      hiddenInput.value = imageId;
+      preview.appendChild(hiddenInput);
+
+      wrapper.remove();
+    });
+  });
+
+  // 新規画像選択
   input.addEventListener("change", () => {
-    selectedFiles = selectedFiles.concat(Array.from(input.files));
-    preview.innerHTML = "";
+    const files = Array.from(input.files);
+    files.forEach(f => window.selectedFiles.push(f));
 
-    selectedFiles.forEach((file, index) => {
+    // 古い新規プレビューを削除（既存画像は残す）
+    preview.querySelectorAll(".new-image-wrapper").forEach(el => el.remove());
+
+    window.selectedFiles.forEach((file) => {
       if (!file.type.startsWith("image/")) return;
 
       const reader = new FileReader();
       reader.onload = (e) => {
         const wrapper = document.createElement("div");
-        wrapper.classList.add("position-relative");
+        wrapper.classList.add("position-relative", "me-2", "mb-2", "new-image-wrapper");
 
         const img = document.createElement("img");
         img.src = e.target.result;
-        img.classList.add("preview-image", "rounded-3");
+        img.classList.add("rounded-3");
+        img.style.objectFit = "cover";
+        img.style.height = "200px;"
+        img.style.width = "200px";
+        img.style.width = "auto";
 
         const btn = document.createElement("button");
+        btn.type = "button";
         btn.innerHTML = "&times;";
         btn.classList.add("btn", "btn-sm", "btn-danger", "position-absolute", "top-0", "end-0", "m-1", "rounded-circle");
 
         btn.addEventListener("click", (ev) => {
           ev.preventDefault();
-          selectedFiles.splice(index, 1);
+          // 選択画像から削除
+          window.selectedFiles = window.selectedFiles.filter(f => f !== file);
           wrapper.remove();
+
+          // input.files を更新
           const data = new DataTransfer();
-          selectedFiles.forEach(f => data.items.add(f));
+          window.selectedFiles.forEach(f => data.items.add(f));
           input.files = data.files;
         });
 
@@ -57,7 +88,7 @@ document.addEventListener("turbo:load", function () {
     // 同じファイル再選択対応
     input.value = "";
     const data = new DataTransfer();
-    selectedFiles.forEach(f => data.items.add(f));
+    window.selectedFiles.forEach(f => data.items.add(f));
     input.files = data.files;
   });
 });

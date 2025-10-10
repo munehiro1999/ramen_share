@@ -39,11 +39,26 @@ class RamenPostsController < ApplicationController
 
   def update
     @ramen_post = current_user.ramen_posts.find(params[:id])
-    if @ramen_post.update(ramen_post_params)
-      redirect_to ramen_posts_path, notice: "投稿を更新しました"
-    else
-      render "edit", status: :unprocessable_entity
+
+  # 1. 既存画像削除
+  if params[:deleted_image_ids].present?
+    params[:deleted_image_ids].each do |id|
+      image = @ramen_post.images.find_by(id: id)
+      image.purge if image
     end
+  end
+
+  # 2. 新規画像を追加
+  if params[:ramen_post][:images].present?
+    @ramen_post.images.attach(params[:ramen_post][:images])
+  end
+
+  # 3. その他のフォーム情報を更新
+  if @ramen_post.update(ramen_post_params.except(:images))
+    redirect_to ramen_posts_path, notice: "投稿を更新しました"
+  else
+    render "edit", status: :unprocessable_entity
+  end
   end
 
   def destroy
