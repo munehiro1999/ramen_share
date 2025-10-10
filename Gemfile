@@ -74,7 +74,7 @@ end
 
 gem 'bootstrap', '~> 5.3.0'
 gem 'jquery-rails'
-gem "sassc-rails"
+gem "sassc-rails", group: :production
 gem "rails-i18n"
 gem "geocoder"
 gem "high_voltage"
