@@ -13,6 +13,19 @@
 ## 6.機能
 
 ## 7.主な使用技術
+### フロントエンド<br>
+・HTML / CSS / JavaScript<br>
+・Bootstrap (スタイリング)<br>
+・Hotwire（Turbo)
+
+### サーバーサイド
+・Ruby 3.3.3 <br>
+・Ruby on Rails 7.1.5.2 <br>
+・SQLlite (データベース)
+
+### インフラ・開発環境
+・Heroku（デプロイ）<br>
+・Git / GitHub（バージョン管理）
 
 ## 8.ER図
 <img width="500" height="400" alt="リレーショナルデータベーススキーマのER図" src="https://github.com/user-attachments/assets/f114092e-ee97-4399-b056-429ea1e32c39" />
