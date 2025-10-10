@@ -1,6 +1,6 @@
 <div class="container mt-3">
   <div class="border rounded p-4 shadow-sm bg-light w-75 w-md-50 w-xl-40 mx-auto">
-  <%= form_with(model: user), data: { turbo: false } do |f| %>
+    <%= form_with(model: user, data: { turbo: false }) do |f| %>
       <div>
         <div class="mb-3">
           <%= f.label :name, "名前" %>
@@ -23,14 +23,13 @@
           <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control" %>
         </div>
       </div>
-      <% if @user.new_record? %>
       <div class="text-center">
-        <%= f.submit "登録完了", class: "btn btn-outline-primary" %>
+        <% if @user.new_record? %>
+          <%= f.submit "登録完了", class: "btn btn-outline-primary" %>
         <% else %>
-        <%= f.submit "編集完了", class: "btn btn-outline-primary"%>
+          <%= f.submit "編集完了", class: "btn btn-outline-primary" %>
+        <% end %>
       </div>
-      <% end %>
     <% end %>
   </div>
 </div>
-

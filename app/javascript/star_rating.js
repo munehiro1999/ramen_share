@@ -2,7 +2,7 @@ document.addEventListener("turbo:load", function () {
   const starContainer = document.getElementById("star-rating");
   const input = document.getElementById("rating-input");
 
-  if (!starContainer || !input) return; 
+  if (!starContainer || !input) return;
 
   const stars = starContainer.querySelectorAll(".star");
 

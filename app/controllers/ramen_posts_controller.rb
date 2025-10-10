@@ -39,7 +39,7 @@ class RamenPostsController < ApplicationController
   def update
     @ramen_post = current_user.ramen_posts.find(params[:id])
     if @ramen_post.update(ramen_post_params)
-      redirect_to @ramen_post, notice: "投稿を更新しました"
+      redirect_to ramen_posts_path, notice: "投稿を更新しました"
     else
       render "edit", status: :unprocessable_entity
     end
