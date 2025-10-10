@@ -224,6 +224,13 @@ GEM
       rack (>= 1.2, < 4)
       snaky_hash (~> 2.0, >= 2.0.3)
       version_gem (~> 1.1, >= 1.1.9)
+    pg (1.6.2)
+    pg (1.6.2-aarch64-linux)
+    pg (1.6.2-aarch64-linux-musl)
+    pg (1.6.2-arm64-darwin)
+    pg (1.6.2-x86_64-darwin)
+    pg (1.6.2-x86_64-linux)
+    pg (1.6.2-x86_64-linux-musl)
     popper_js (2.11.8)
     pp (0.6.2)
       prettyprint
@@ -398,6 +405,7 @@ DEPENDENCIES
   importmap-rails
   jbuilder
   jquery-rails
+  pg
   puma (>= 5.0)
   rails (~> 7.1.5)
   rails-erd
