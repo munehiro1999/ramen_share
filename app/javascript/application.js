@@ -8,7 +8,7 @@ import "@popperjs/core"
 import "bootstrap"
 
 import "map_display"
-import "map_detail"
+import "map_preview"
 import "star_rating"
 
 
