@@ -6,9 +6,9 @@ Rails.start()
 
 import "@popperjs/core"
 import "bootstrap"
-import "map_display"
-import "map_preview"
-import "star_rating"
+import "./map_display"
+import "./map_preview"
+import "./star_rating"
 
 
 
