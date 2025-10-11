@@ -1,11 +1,11 @@
 // Configure your import map in config/importmap.rb. Read more: https://github.com/rails/importmap-rails
 import "@hotwired/turbo-rails"
-import "controllers"
+import "./controllers"
 import Rails from "@rails/ujs"
 Rails.start()
 
 import "@popperjs/core"
-import "bootstrap"
+import "./bootstrap"
 import "./map_display"
 import "./map_preview"
 import "./star_rating"
