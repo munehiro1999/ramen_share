@@ -1,5 +1,10 @@
 //= link_tree ../images
 //= link_directory ../stylesheets .css
-
-
-
+//= link application.js
+//= link star_rating.js
+//= link map_display.js
+//= link map_preview.js
+//= link controllers/application.js
+//= link controllers/hello_controller.js
+//= link controllers/index.js
+//= link_tree ../builds
