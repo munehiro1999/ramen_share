@@ -58,8 +58,8 @@ document.addEventListener("turbo:load", function () {
         img.src = e.target.result;
         img.classList.add("rounded-3");
         img.style.objectFit = "cover";
-        img.style.height = "200px;"
-        img.style.width = "200px";
+        img.style.height = "150px;"
+        img.style.width = "150px";
         img.style.width = "auto";
 
         const btn = document.createElement("button");
