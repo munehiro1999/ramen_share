@@ -60,7 +60,6 @@ document.addEventListener("turbo:load", function () {
         img.style.objectFit = "cover";
         img.style.height = "150px;"
         img.style.width = "150px";
-        img.style.width = "auto";
 
         const btn = document.createElement("button");
         btn.type = "button";
