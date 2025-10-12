@@ -55,7 +55,7 @@ ramen_samples.each do |post_data|
 
   # 投稿用画像をランダムで添付（50%確率で画像なし）
   if [true, false].sample
-    image_path = Rails.root.join("app/assets/images/seeds/ramen1.png")
+    image_path = Rails.root.join("app/assets/images/ramen1.png")
     if File.exist?(image_path)
       ramen_post.images.attach(io: File.open(image_path), filename: "ramen1.png")
       puts "🍜 #{post_data[:title]} に ramen1.png を添付しました"
