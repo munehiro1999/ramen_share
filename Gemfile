@@ -80,3 +80,5 @@ gem "rails-i18n"
 gem "geocoder"
 gem "high_voltage"
 gem "rails-erd"
+gem 'cloudinary'
+gem 'activestorage-cloudinary-service'
